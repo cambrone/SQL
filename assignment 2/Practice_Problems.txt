@@ -1,0 +1,61 @@
+1. List the customer number, the name, the phone number, and the city of customers.
+
+SELECT custno, custname, phone, city
+FROM Customer;
+
+
+2. List the customer number , the name, the phone number and the city of customers who reside in Colorado. 
+
+
+SELECT custom, custname, phone, city 
+FROM Customer
+WHERE state IN (‘CO’);
+
+
+3. List all columns of the EventRequest table for events costing more than $4000. Order the result by the event date. 
+
+
+SELECT *
+FROM EventRequest
+WHERE estcost>4000
+ORDER BY date held;
+
+
+
+4. List the event number , the vent data, the estimated audience number with approved status and audience greater than 9000 or with pending status and audience greater than 7000.
+
+
+
+SELECT eventno, dateheld, estaudience
+FROM EventRequest
+WHERE (status=‘Approved’ AND estaudience>9000) OR
+(status=‘Pending’ AND estaudience>7000);
+
+
+
+
+6. List the average number of resources used by plan number. Include only location number L100. 
+
+
+
+SELECT planno, AVG(numberfld)
+FROM EventPlanLine
+WHERE locno=‘L100’
+GROUP BY planno;
+
+
+
+
+7. List the average number of resources used by plan number. Include only location number L100. Eliminate plans with less than two event lines containing location number L100. 
+
+
+
+SELECT planno, AVG(numbfld) AS AvgNumResources
+COUNT(*) AS numeventsLines
+FROM EventPlanLine
+WHERE Locno=‘L100’
+GROUP BY Planno
+HAVING COUNT(*)>1;
+
+
+

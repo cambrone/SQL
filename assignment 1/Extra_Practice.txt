@@ -1,0 +1,69 @@
+1. Write a CREATE TABLE statement for the Customer table. Choose data types appropriate for the DBMS used in your course. Note that the CustBal column contains numeric data. The currency symbols are not stored in the database. The CustFirstName and CustLastName columns are required (not null).
+
+
+CREATE TABLE Customer(
+	CustNo	        CHAR(8),
+	CustFirstName   VARCHAR2(30) CONSTRAINT NOT NULL,
+	CustLastName	VARCHAR2(30) CONSTRAINT NOT NULL,
+	CustCity	VARCHAR2(30),
+	CustState       CHAR (2),
+	CustZip	        CHAR(10),
+	CustBal         DECIMAL(5,2)
+
+CONSTRAINT CustNoPK PRIMARY KEY (CustNo)
+)
+
+2. Write a CREATE TABLE statement for the Employee table. Choose data types appropriate for the DBMS used in your course. The EmpFirstName, EmpLastName, and EmpEMail columns are required (not null).
+
+
+CREATE TABLE Employee(
+	EmpNo		CHAR(8),
+	EmpFirstName	VARCHAR2(30) CONSTRAINT NOT NULL,
+	EmpLastName	VARCHAR2(30) CONSTRAINT NOT NULL,
+	EmpPhone	CHAR(30),
+	EmpEmail	VARCHAR2(30) NOT NULL,
+
+	CONSTRAINT EmpNoPK PRIMARY KEY (EmpNo)
+)
+
+
+3. Write a CREATE TABLE statement for the OrderTbl table. Choose data types appropriate for the DBMS used in your course. The OrdDate column is required (not null).
+
+
+CREATE TABLE OrderTbl(
+	OrdNo		CHAR(8),
+	OrdDate		DATE CONSTRAINT NOT NULL,
+	CustNo		CHAR(8),
+	EmpNo		CHAR(8),
+
+	CONSTRAINT 	OrdNoPK PRIMARY KEY (OrdNo),
+	CONSTRAINT 	CustNoFK FOREIGN KEY (CustNot) REFERENCES Customer,
+	CONSTRAINT 	EmpNoFK FOREIGN KEY (Empno) REFERENCES Employee;
+)
+
+4. Identify the foreign keys and 1-M relationships among the Customer, Employee, and OrderTbl tables. For each relationship, identify the parent table and the child table.
+
+Foreign keys are CustNo and EmpNo
+One customer to many prders Customer is parent and ordertbl is child. Another 1 to many relationship 1 employee to many order tbale. 
+
+
+
+5. Extend your CREATE TABLE statement from problem (3) with referential integrity constraints. From examination of the sample data and your common understanding of order entry businesses, are null values allowed for the foreign keys in the OrderTbl table?  Why or why not? Extend the CREATE TABLE statement in problem (5) to enforce the null value restrictions if any.
+
+
+Yes if customer does not have employee but the customer cannot be empty in such table
+
+6. Extend your CREATE TABLE statement for the Employee table (problem 2) with a unique constraint for EmpEMail. Use a named constraint clause for the unique constraint.
+
+
+CREATE TABLE Employee(
+	EmpNo		CHAR(8),
+	EmpFirstName	VARCHAR2(30) CONSTRAINT NOT NULL,
+	EmpLastName	VARCHAR2(30) CONSTRAINT NOT NULL,
+	EmpPhone	CHAR(30),
+	EmpEmail	VARCHAR2(30)/ NOT NULL,
+
+	CONSTRAINT EmpNoPK PRIMARY KEY (EmpNo),
+	CONSTRAINT UniqueEmail UNIQUE (EmpEmail)
+)
+
