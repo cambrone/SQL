@@ -24,7 +24,7 @@ ORDER BY rate;
 SELECT eventno, dateauth, status
 FROM EventRequest
 WHERE (status=‘Approved’ OR status=‘Denied’) AND
-dateauth BETWEEN ‘1-JUL-013’ AND ’21-JUL-2013’;
+dateauth BETWEEN ‘1-JUL-2013’ AND ’21-JUL-2013’;
 
 
 

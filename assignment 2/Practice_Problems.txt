@@ -18,7 +18,7 @@ WHERE state IN (‘CO’);
 SELECT *
 FROM EventRequest
 WHERE estcost>4000
-ORDER BY date held;
+ORDER BY dateheld;
 
 
 
